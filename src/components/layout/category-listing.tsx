@@ -50,7 +50,7 @@ function ProductCategoryCard({
             {product.productName}
           </Heading>
         </div>
-        <span className="text-sm font-medium text-[#b49ecc] group-hover:underline">
+        <span className="text-sm font-medium text-[#5D2E78] group-hover:underline">
           Ver detalhes
         </span>
       </div>
@@ -75,7 +75,7 @@ export function CategoryListing({
       <div className="space-y-8">
         {lines.map((line) => (
           <section key={line.lineSlug} className="space-y-4">
-            <h2 className="text-xl font-semibold tracking-tight text-[#CB634E]">
+            <h2 className="text-xl font-semibold tracking-tight text-[#FF9A42]">
               Linha {line.lineLabel}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

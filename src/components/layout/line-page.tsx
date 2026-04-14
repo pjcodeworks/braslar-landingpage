@@ -31,7 +31,7 @@ export function LinePageLayout({ line }: { line: LineInfo }) {
             <li aria-hidden className="text-zinc-600">
               /
             </li>
-            <li className="font-medium text-foreground">
+            <li className="font-medium text-[#FF9A42]">
               Linha {line.lineLabel}
             </li>
           </ol>
@@ -41,7 +41,7 @@ export function LinePageLayout({ line }: { line: LineInfo }) {
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#b49ecc]">
             {categoryTitle}
           </p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[#FF9A42] sm:text-4xl">
             Linha {line.lineLabel}
           </h1>
           <p className="mt-3 text-base text-zinc-600">

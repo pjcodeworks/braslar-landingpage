@@ -44,7 +44,7 @@ export function CategoryProductCard({
           </p>
           <h2 className="mt-2 text-lg font-semibold text-zinc-900">{product.productName}</h2>
         </div>
-        <span className="text-sm font-medium text-[#b49ecc] group-hover:underline">
+        <span className="text-sm font-medium text-[#5D2E78] group-hover:underline">
           Ver detalhes
         </span>
       </div>
