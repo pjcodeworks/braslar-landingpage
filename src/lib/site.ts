@@ -38,7 +38,7 @@ const contact = {
 const socialNav = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/geral_since_1914",
+    href: "https://www.instagram.com/braslareletros/",
     network: "instagram",
   },
   {
