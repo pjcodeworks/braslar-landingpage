@@ -11,10 +11,10 @@ function getSiteUrl(): string {
 }
 
 const categoryNav = [
-  { label: "Fogões", href: "/fogoes" },
-  { label: "Cooktops", href: "/cooktops" },
-  { label: "Fogões a lenha", href: "/fogao-a-lenha" },
-  { label: "Refrigeradores", href: "/refrigeradores" },
+  { label: "Carina", href: "/carina" },
+  { label: "New Sirirus", href: "/new-sirirus" },
+  { label: "Asiático", href: "/asiatico" },
+  { label: "Cooktop", href: "/cooktops" },
 ] as const;
 
 const imprensaNav = { label: "Imprensa", href: "/imprensa" } as const;

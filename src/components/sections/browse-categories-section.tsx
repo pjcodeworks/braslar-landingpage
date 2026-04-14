@@ -3,47 +3,28 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/site";
 
-type CategoryCard = {
-  label: string;
-  href: string;
-  /** Textura / foto de fundo (opcional) */
-  imageSrc?: string;
-  /** Imagem por cima do fundo, ex. produto em PNG (opcional) */
-  overlaySrc?: string;
+/** Imagem de destaque por rota (par com `SITE.categoryNav`). */
+const LINE_OVERLAY_BY_HREF: Record<string, string> = {
+  "/carina": "/hero/carousel/braslar-slide-2-desktop.png",
+  "/new-sirirus": "/hero/carousel/braslar-slide-1-desktop.png",
+  "/asiatico": "/hero/carousel/braslar-slide-4-desktop.png",
+  "/cooktops": "/hero/carousel/braslar-slide-3-desktop.png",
 };
 
-const CATEGORIES: CategoryCard[] = [
-  {
-    label: "Fogões",
-    href: "/fogoes",
-    imageSrc: "/hero/cards/card-background.jpg",
-    overlaySrc: "/hero/cards/Horus 5Q 1.png",
-  },
-  {
-    label: "Cooktops",
-    href: "/cooktops",
-    imageSrc: "/hero/cards/card-background.jpg",
-    overlaySrc: "/hero/cards/cooktop 5BC 2.png",
-  },
-  {
-    label: "Fogões a lenha",
-    href: "/fogao-a-lenha",
-    imageSrc: "/hero/cards/card-background.jpg",
-    overlaySrc: "/hero/cards/Lenha 2.png",
-  },
-  {
-    label: "Refrigeradores",
-    href: "/refrigeradores",
-    imageSrc: "/hero/cards/card-background.jpg",
-    overlaySrc: "/hero/cards/Freezer 510L 1.png",
-  },
-];
-
 export function BrowseCategoriesSection() {
+  const lines = SITE.categoryNav.map((item) => ({
+    label: item.label,
+    href: item.href,
+    imageSrc: "/hero/cards/card-background.jpg",
+    overlaySrc:
+      LINE_OVERLAY_BY_HREF[item.href] ??
+      "/hero/carousel/braslar-slide-1-desktop.png",
+  }));
+
   return (
     <section
-      id="categorias"
-      aria-labelledby="browse-categories-heading"
+      id="linhas"
+      aria-labelledby="explore-linhas-heading"
       className={cn(
         "scroll-mt-16 border-t border-zinc-200 py-6 sm:py-8 lg:py-6",
         "lg:flex lg:h-[calc(100svh-4rem)] lg:min-h-0 lg:shrink-0 lg:flex-col lg:overflow-hidden",
@@ -56,13 +37,13 @@ export function BrowseCategoriesSection() {
         )}
       >
         <h2
-          id="browse-categories-heading"
+          id="explore-linhas-heading"
           className="shrink-0 text-center text-2xl font-semibold tracking-tight sm:text-3xl"
         >
-          Busque por categorias
+          Explore nossas linhas
         </h2>
         <p className="mx-auto mt-2 max-w-2xl shrink-0 text-center text-base text-zinc-600 sm:mt-3">
-          {`Escolha uma categoria e explore os produtos da ${SITE.name}.`}
+          {`Escolha uma linha e conheça os produtos ${SITE.name}.`}
         </p>
 
         <div
@@ -71,7 +52,7 @@ export function BrowseCategoriesSection() {
             "lg:mt-4 lg:min-h-0 lg:flex-1 lg:auto-rows-[minmax(0,1fr)] lg:grid-cols-4 lg:gap-6 xl:gap-8",
           )}
         >
-          {CATEGORIES.map((item) => (
+          {lines.map((item) => (
             <Link
               key={item.href}
               href={item.href}

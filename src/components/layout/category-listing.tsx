@@ -38,13 +38,13 @@ function ProductCategoryCard({
       <div className="flex flex-1 flex-col justify-between gap-3 p-4">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.18em]">
-            <span className="text-white">{product.categoryLabel}</span>
-            <span className="text-[#CB634E]">
+            <span className="text-zinc-600">{product.categoryLabel}</span>
+            <span className="text-[#5D2E78]">
               {" "}
               · {product.lineLabel}
             </span>
           </p>
-          <Heading className="mt-2 text-lg font-semibold text-white">
+          <Heading className="mt-2 text-lg font-semibold text-zinc-900">
             {product.productName}
           </Heading>
         </div>
@@ -63,7 +63,7 @@ export function CategoryListing({
   categorySlug: CategorySlug;
   products: Product[];
 }) {
-  if (categorySlug === "fogoes") {
+  if (categorySlug === "carina" || categorySlug === "new-sirirus") {
     const lines = Array.from(
       new Map(
         products.map((p) => [p.lineSlug, { lineSlug: p.lineSlug, lineLabel: p.lineLabel }]),

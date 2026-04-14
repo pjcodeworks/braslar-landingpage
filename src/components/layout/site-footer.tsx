@@ -72,7 +72,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={item.label}
-                className="text-[#CC298D] transition-colors hover:text-[#E855A8]"
+                className="text-[#5D2E78] transition-colors hover:text-[#743a96]"
               >
                 <SocialIcon network={item.network} className="h-5 w-5" />
               </a>
@@ -85,7 +85,7 @@ export function SiteFooter() {
           className="grid grid-cols-2 gap-x-10 gap-y-8 text-sm sm:grid-cols-3"
         >
           <div className="flex flex-col gap-3">
-            <div className="font-semibold text-white">Categoria</div>
+            <div className="font-semibold text-[#5D2E78]">Categoria</div>
             <div className="flex flex-col gap-2">
               {SITE.categoryNav.map((item) => (
                 <SiteNavLink
@@ -100,7 +100,7 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="font-semibold text-white">Institucional</div>
+            <div className="font-semibold text-[#5D2E78]">Institucional</div>
             <div className="flex flex-col gap-2">
               {SITE.institucionalNav.map((item) => (
                 <SiteNavLink
@@ -115,7 +115,7 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <div className="font-semibold text-white">Contato</div>
+            <div className="font-semibold text-[#5D2E78]">Contato</div>
             <div className="flex flex-col gap-2">
               <a
                 href="#contato"
