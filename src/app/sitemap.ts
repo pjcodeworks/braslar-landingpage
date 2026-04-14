@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: `${base}/contato`,
+      lastModified: lastMod,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   for (const { categoria } of getAllCategoryRouteParams()) {

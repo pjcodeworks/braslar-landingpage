@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { IMAGE_QUALITY } from "@/lib/next-image-quality";
 import {
   useEffect,
   useId,
@@ -351,7 +352,6 @@ export function HeroCarousel({
                   );
                 }
 
-                const sameAsset = slide.mobile === slide.desktop;
                 return (
                   <div
                     key={`${slide.desktop}|${slide.mobile}`}
@@ -360,38 +360,35 @@ export function HeroCarousel({
                     }}
                     className="relative h-full w-full shrink-0"
                   >
-                    {sameAsset ? (
-                      <Image
-                        src={slide.desktop}
-                        alt={slide.alt}
-                        fill
-                        draggable={false}
-                        priority={i === 1}
-                        sizes="100vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <>
-                        <Image
-                          src={slide.mobile}
-                          alt={slide.alt}
-                          fill
-                          draggable={false}
-                          priority={i === 1}
-                          sizes="100vw"
-                          className="object-cover md:hidden"
-                        />
-                        <Image
-                          src={slide.desktop}
-                          alt={slide.alt}
-                          fill
-                          draggable={false}
-                          priority={i === 1}
-                          sizes="100vw"
-                          className="hidden object-cover md:block"
-                        />
-                      </>
-                    )}
+                    {/* Duas camadas: arte mobile só em ecrã pequeno; arte desktop a partir do breakpoint md. */}
+                    <Image
+                      src={slide.mobile}
+                      alt={slide.alt}
+                      fill
+                      quality={IMAGE_QUALITY.max}
+                      draggable={false}
+                      priority={i === 1}
+                      sizes="(max-width: 767px) 100vw, 0px"
+                      className="object-cover object-top md:hidden"
+                    />
+                    <Image
+                      src={slide.desktop}
+                      alt={slide.alt}
+                      fill
+                      quality={
+                        slide.kind === "image" &&
+                        slide.desktopImageQuality != null
+                          ? slide.desktopImageQuality
+                          : IMAGE_QUALITY.max
+                      }
+                      draggable={false}
+                      priority={i === 1}
+                      sizes="(max-width: 767px) 0px, 100vw"
+                      className={cn(
+                        "hidden object-cover md:block",
+                        slide.kind === "image" && slide.desktopImageClassName,
+                      )}
+                    />
                   </div>
                 );
               })}

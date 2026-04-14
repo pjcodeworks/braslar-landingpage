@@ -18,7 +18,7 @@ export function FinalCtaSection() {
             </div>
 
             <div className="lg:col-span-4 lg:flex lg:justify-end">
-              <a href="#contato">
+              <a href="/contato">
                 <Button
                   size="lg"
                   className="w-full rounded-2xl bg-background text-foreground hover:bg-background/90 focus-visible:ring-background lg:w-auto"

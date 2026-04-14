@@ -118,7 +118,9 @@ export function SiteFooter() {
             <div className="font-semibold text-[#5D2E78]">Contato</div>
             <div className="flex flex-col gap-2">
               <a
-                href="#contato"
+                href={SITE.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white/85 hover:text-white"
               >
                 Falar com a gente

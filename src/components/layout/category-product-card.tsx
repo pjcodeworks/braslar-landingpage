@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IMAGE_QUALITY } from "@/lib/next-image-quality";
 import { getPrimaryProductImageSrc, type Product } from "@/lib/products";
 
 export function CategoryProductCard({
@@ -22,6 +23,7 @@ export function CategoryProductCard({
             src={preview}
             alt={product.productName}
             fill
+            quality={IMAGE_QUALITY.listing}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-contain p-3 transition-transform duration-300 ease-out motion-safe:group-hover:scale-[1.02]"
           />

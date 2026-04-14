@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import type { ProductMeasurementsData } from "@/lib/products";
+import { useProductColor } from "@/components/layout/product-color-context";
 import { formatMeasureDisplay } from "@/lib/format-measure";
 import { cn } from "@/lib/cn";
 
@@ -95,6 +96,9 @@ export function ProductMeasurements({ data }: { data: ProductMeasurementsData })
   const baseId = useId();
   const [mode, setMode] = useState<Mode>("without");
   const row = mode === "without" ? data.withoutPackaging : data.withPackaging;
+  const color = useProductColor();
+  const showColorPicker =
+    Boolean(color?.hasColors && color.variants && color.variants.length > 0);
 
   return (
     <section
@@ -109,6 +113,43 @@ export function ProductMeasurements({ data }: { data: ProductMeasurementsData })
           >
             Medidas do produto
           </h2>
+          {showColorPicker && color ? (
+            <div className="flex flex-col gap-2">
+              <p
+                id={`${baseId}-color-label`}
+                className="text-[0.65rem] font-medium uppercase tracking-[0.14em] text-zinc-500"
+              >
+                Cor
+              </p>
+              <div
+                className="flex flex-wrap gap-2"
+                role="tablist"
+                aria-labelledby={`${baseId}-color-label`}
+              >
+                {color.variants!.map((v) => {
+                  const selected = v.slug === color.colorSlug;
+                  return (
+                    <button
+                      key={v.slug}
+                      type="button"
+                      role="tab"
+                      aria-selected={selected}
+                      tabIndex={selected ? 0 : -1}
+                      onClick={() => color.setColorSlug(v.slug)}
+                      className={cn(
+                        "min-h-[2.5rem] rounded-xl border px-3 py-2 text-xs font-medium transition sm:px-4 sm:text-sm",
+                        selected
+                          ? "border-[#CB634E] bg-white text-foreground ring-1 ring-[#CB634E]/30"
+                          : "border-zinc-200 bg-zinc-100/80 text-zinc-600 hover:border-zinc-300 hover:text-foreground",
+                      )}
+                    >
+                      {v.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
           <div
             className="flex w-full rounded-xl border border-zinc-200 bg-zinc-100 p-1"
             role="tablist"

@@ -3,9 +3,9 @@ import type { Product } from "@/lib/products";
 import { getCategoryPageTitle, getProductMeasurements } from "@/lib/products";
 import {
   ProductImageGalleryMain,
-  ProductImageGalleryProvider,
   ProductImageGalleryThumbs,
 } from "@/components/layout/product-image-carousel";
+import { ProductColorGalleryWrapper } from "@/components/layout/product-color-context";
 import { ProductMeasurements } from "@/components/layout/product-measurements";
 import { ProductBanners } from "@/components/layout/product-banners";
 import { ProductDescriptionExpandable } from "@/components/layout/product-description-expandable";
@@ -65,11 +65,7 @@ export function ProductPageLayout({ product }: { product: Product }) {
         </nav>
 
         <header className="border-b border-zinc-200 pb-8 lg:pb-6">
-          <ProductImageGalleryProvider
-            key={product.productSlug}
-            images={product.imagePaths}
-            productName={product.productName}
-          >
+          <ProductColorGalleryWrapper product={product}>
             {/*
               Mobile: título → foto → miniaturas → descrição (Conferir mais) → medidas.
               lg+: duas colunas ~50/50 — esq.: foto + miniaturas; dir.: título e medidas (scroll se preciso).
@@ -140,7 +136,7 @@ export function ProductPageLayout({ product }: { product: Product }) {
               </div>
               <ProductImageGalleryThumbs className="shrink-0 w-full lg:col-start-1 lg:row-start-2" />
             </div>
-          </ProductImageGalleryProvider>
+          </ProductColorGalleryWrapper>
         </header>
 
         {lowerBlockVisible ? (

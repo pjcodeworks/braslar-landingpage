@@ -22,8 +22,18 @@ const nossaHistoriaNav = {
   label: "Nossa história",
   href: "/nossa-historia",
 } as const;
+const contatoNav = { label: "Contato", href: "/contato" } as const;
 
-const institucionalNav = [imprensaNav, nossaHistoriaNav] as const;
+const institucionalNav = [imprensaNav, nossaHistoriaNav, contatoNav] as const;
+
+/** Canais oficiais de atendimento (página /contato). */
+const contact = {
+  phoneDisplay: "(42) 3220-5650",
+  phoneTel: "tel:+554232205650",
+  whatsappUrl: "https://wa.me/554232205650",
+  supportEmail: "sac@fogoesbraslar.com.br",
+  hoursSummary: "de segunda a sexta, das 7h30 às 17h18",
+} as const;
 
 const socialNav = [
   {
@@ -52,7 +62,9 @@ export const SITE = {
   categoryNav,
   imprensaNav,
   nossaHistoriaNav,
+  contatoNav,
   institucionalNav,
+  contact,
   socialNav,
   nav: [...categoryNav, ...institucionalNav],
 } as const;

@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     /** Cache das imagens otimizadas em `/_next/image` (mesmo URL = reutilização no browser) */
     minimumCacheTTL: oneYear,
+    /** Incluir 100 para `quality={100}` em galerias e hero; 75 mantém o default do Next onde não se define `quality`. */
+    qualities: [75, 85, 90, 92, 96, 100],
   },
   async headers() {
     return [

@@ -1,24 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { IMAGE_QUALITY } from "@/lib/next-image-quality";
+import {
+  HERO_CAROUSEL_DEFAULT_DESKTOP,
+  HERO_LINE_OVERLAY_DESKTOP_BY_HREF,
+} from "@/lib/hero-carousel-slides";
 import { SITE } from "@/lib/site";
-
-/** Imagem de destaque por rota (par com `SITE.categoryNav`). */
-const LINE_OVERLAY_BY_HREF: Record<string, string> = {
-  "/carina": "/hero/carousel/braslar-slide-2-desktop.png",
-  "/new-sirirus": "/hero/carousel/braslar-slide-1-desktop.png",
-  "/asiatico": "/hero/carousel/braslar-slide-4-desktop.png",
-  "/cooktops": "/hero/carousel/braslar-slide-3-desktop.png",
-};
 
 export function BrowseCategoriesSection() {
   const lines = SITE.categoryNav.map((item) => ({
     label: item.label,
     href: item.href,
-    imageSrc: "/hero/cards/card-background.jpg",
     overlaySrc:
-      LINE_OVERLAY_BY_HREF[item.href] ??
-      "/hero/carousel/braslar-slide-1-desktop.png",
+      HERO_LINE_OVERLAY_DESKTOP_BY_HREF[item.href] ??
+      HERO_CAROUSEL_DEFAULT_DESKTOP,
   }));
 
   return (
@@ -57,78 +53,45 @@ export function BrowseCategoriesSection() {
               key={item.href}
               href={item.href}
               className={cn(
-                "group flex h-full min-h-0 max-h-full flex-col overflow-hidden rounded-2xl border shadow-sm",
-                "transition-[border-color,box-shadow] hover:shadow-md",
+                "group flex h-full min-h-0 max-h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm",
+                "transition-[border-color,box-shadow] hover:border-zinc-400 hover:shadow-md",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                item.overlaySrc
-                  ? "border-white/15 bg-black hover:border-white/30"
-                  : "border-zinc-200 bg-white hover:border-zinc-400",
               )}
             >
-              {item.imageSrc ? (
-                <div
-                  className={cn(
-                    "relative w-full overflow-hidden bg-black",
-                    "max-lg:aspect-[3/5]",
-                    "lg:h-full lg:min-h-0 lg:flex-1",
-                  )}
-                >
-                  <Image
-                    src={item.imageSrc}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-center opacity-30"
-                  />
-                  {item.overlaySrc ? (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden p-4 sm:p-6">
-                      <div
-                        className={cn(
-                          "relative h-[72%] w-[82%] max-h-full max-w-full",
-                          "origin-center will-change-transform",
-                          "transition-transform duration-700 ease-out motion-reduce:transition-none",
-                          "motion-safe:group-hover:scale-[1.06]",
-                        )}
-                      >
-                        <Image
-                          src={item.overlaySrc}
-                          alt={`${item.label} — destaque`}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-contain object-center"
-                        />
-                      </div>
+              <div
+                className={cn(
+                  "relative flex w-full min-h-0 flex-1 flex-col overflow-hidden bg-white",
+                  "max-lg:aspect-[3/5]",
+                  "lg:h-full",
+                )}
+              >
+                <div className="relative min-h-0 w-full flex-1 overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
+                    <div
+                      className={cn(
+                        "relative h-[72%] w-[82%] max-h-full max-w-full",
+                        "origin-center will-change-transform",
+                        "transition-transform duration-700 ease-out motion-reduce:transition-none",
+                        "motion-safe:group-hover:scale-[1.06]",
+                      )}
+                    >
+                      <Image
+                        src={item.overlaySrc}
+                        alt={`${item.label} — destaque`}
+                        fill
+                        quality={IMAGE_QUALITY.listing}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        className="object-contain object-center"
+                      />
                     </div>
-                  ) : null}
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-28 bg-gradient-to-t from-black/90 via-black/55 to-transparent sm:h-32"
-                    aria-hidden
-                  />
-                  <div className="absolute inset-x-0 bottom-0 z-30 flex justify-center px-3 pb-3.5 pt-10 sm:pb-4 sm:pt-12">
-                    <h3 className="text-center text-sm font-semibold text-white drop-shadow-md sm:text-base">
-                      {item.label}
-                    </h3>
                   </div>
                 </div>
-              ) : (
-                <div
-                  className={cn(
-                    "relative w-full overflow-hidden bg-zinc-100",
-                    "max-lg:aspect-[3/5]",
-                    "lg:h-full lg:min-h-0 lg:flex-1",
-                  )}
-                >
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-zinc-300/40 to-transparent"
-                    aria-hidden
-                  />
-                  <div className="absolute inset-x-0 bottom-0 z-20 flex justify-center px-3 pb-3.5 pt-8 sm:pb-4">
-                    <h3 className="text-center text-sm font-semibold text-zinc-900 sm:text-base">
-                      {item.label}
-                    </h3>
-                  </div>
+                <div className="shrink-0 border-t border-zinc-100 bg-white px-3 py-3 sm:py-3.5">
+                  <h3 className="text-center text-sm font-semibold text-zinc-900 sm:text-base">
+                    {item.label}
+                  </h3>
                 </div>
-              )}
+              </div>
             </Link>
           ))}
         </div>

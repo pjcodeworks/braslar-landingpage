@@ -5,6 +5,10 @@ export type HeroCarouselImageSlide = {
   alt: string;
   desktop: string;
   mobile: string;
+  /** Classes Tailwind extra só na `<Image>` desktop (ex.: `object-position`). */
+  desktopImageClassName?: string;
+  /** Qualidade do `next/image` na variante desktop (1–100). */
+  desktopImageQuality?: number;
 };
 
 export type HeroCarouselVideoSlide = {
@@ -17,32 +21,75 @@ export type HeroCarouselVideoSlide = {
 export type HeroCarouselSlide = HeroCarouselImageSlide | HeroCarouselVideoSlide;
 
 /**
- * Slides do hero: imagens com par desktop/mobile.
- * Ficheiros em `public/hero/carousel/` (braslar-slide-*).
+ * Mídia do carrossel (ficheiros em `public/hero/carousel/slide-NN-*.jpg`).
+ * Variantes `*-mobile.jpg` (retrato) só em ecrã pequeno; `*-desktop.jpg` a partir do breakpoint md.
  */
-export const HERO_CAROUSEL_SLIDES: HeroCarouselSlide[] = [
+const HERO_CAROUSEL_MEDIA = [
   {
-    kind: "image",
-    desktop: "/hero/carousel/braslar-slide-1-desktop.png",
-    mobile: "/hero/carousel/braslar-slide-1-mobile.png",
+    desktop: "/hero/carousel/slide-01-desktop.jpg",
+    mobile: "/hero/carousel/slide-01-mobile.jpg",
     alt: `Linha de cocção ${SITE.name} — conheça toda a linha`,
   },
   {
-    kind: "image",
-    desktop: "/hero/carousel/braslar-slide-2-desktop.png",
-    mobile: "/hero/carousel/braslar-slide-2-mobile.png",
+    desktop: "/hero/carousel/slide-02-desktop.jpg",
+    mobile: "/hero/carousel/slide-02-mobile.jpg",
     alt: `Fogão ${SITE.name} Carina em destaque`,
+    /** Herói mais alto que 16:9: desloca o recorte para favorecer o produto. */
+    desktopImageClassName: "object-[center_50%_46%]",
+    desktopImageQuality: 100,
   },
   {
-    kind: "image",
-    desktop: "/hero/carousel/braslar-slide-3-desktop.png",
-    mobile: "/hero/carousel/braslar-slide-3-mobile.png",
+    desktop: "/hero/carousel/slide-03-desktop.jpg",
+    mobile: "/hero/carousel/slide-03-mobile.jpg",
     alt: `Cooktop ${SITE.name} — praticidade e elegância para o seu dia a dia`,
   },
   {
-    kind: "image",
-    desktop: "/hero/carousel/braslar-slide-4-desktop.png",
-    mobile: "/hero/carousel/braslar-slide-4-mobile.png",
+    desktop: "/hero/carousel/slide-04-desktop.jpg",
+    mobile: "/hero/carousel/slide-04-mobile.jpg",
     alt: `Fogão ${SITE.name} em ambiente de cozinha`,
   },
-];
+] as const;
+
+export const HERO_CAROUSEL_SLIDES: HeroCarouselSlide[] = HERO_CAROUSEL_MEDIA.map(
+  (m) => ({
+    kind: "image" as const,
+    desktop: m.desktop,
+    mobile: m.mobile,
+    alt: m.alt,
+    ...("desktopImageClassName" in m && m.desktopImageClassName
+      ? { desktopImageClassName: m.desktopImageClassName }
+      : {}),
+    ...("desktopImageQuality" in m && m.desktopImageQuality != null
+      ? { desktopImageQuality: m.desktopImageQuality }
+      : {}),
+  }),
+);
+
+/** Imagem desktop do slide 1 (fallback em secções que referenciam o hero). */
+export const HERO_CAROUSEL_DEFAULT_DESKTOP =
+  HERO_CAROUSEL_MEDIA[0].desktop;
+
+/**
+ * Overlay do bloco “Linhas” por rota de categoria (`SITE.categoryNav`).
+ * Cartão Carina: arte Carina Top Control (fundo branco), `public/hero/lines/carina-top-control.png`.
+ * Rota dedicada (se existir no menu): mesma arte.
+ */
+const HERO_LINE_CARINA_TOP_CONTROL_DESKTOP =
+  "/hero/lines/carina-top-control.png";
+
+/** Cartão Asiático na secção “Linhas”, `public/hero/lines/asiatico.png`. */
+const HERO_LINE_ASIATICO_DESKTOP = "/hero/lines/asiatico.png";
+
+/** Cartão New Sirirus na secção “Linhas”, `public/hero/lines/new-sirirus.png`. */
+const HERO_LINE_NEW_SIRIRUS_DESKTOP = "/hero/lines/new-sirirus.png";
+
+/** Cartão Cooktop na secção “Linhas”, `public/hero/lines/cooktops.png`. */
+const HERO_LINE_COOKTOPS_DESKTOP = "/hero/lines/cooktops.png";
+
+export const HERO_LINE_OVERLAY_DESKTOP_BY_HREF: Record<string, string> = {
+  "/carina": HERO_LINE_CARINA_TOP_CONTROL_DESKTOP,
+  "/carina-top-control": HERO_LINE_CARINA_TOP_CONTROL_DESKTOP,
+  "/new-sirirus": HERO_LINE_NEW_SIRIRUS_DESKTOP,
+  "/asiatico": HERO_LINE_ASIATICO_DESKTOP,
+  "/cooktops": HERO_LINE_COOKTOPS_DESKTOP,
+};

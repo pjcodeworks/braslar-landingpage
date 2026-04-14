@@ -176,7 +176,13 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="mt-auto border-t border-white/20 pt-6">
-            <a href="#contato" className="block" onClick={closeMobile}>
+            <a
+              href={SITE.contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+              onClick={closeMobile}
+            >
               <Button
                 variant="ghost"
                 size="md"
@@ -226,7 +232,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href="#contato" className="hidden lg:block">
+          <a
+            href={SITE.contact.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:block"
+          >
             <Button
               variant="ghost"
               size="sm"

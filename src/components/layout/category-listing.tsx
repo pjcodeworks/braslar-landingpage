@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IMAGE_QUALITY } from "@/lib/next-image-quality";
 import { getPrimaryProductImageSrc, type CategorySlug, type Product } from "@/lib/products";
 
 const cardClassName =
@@ -26,6 +27,7 @@ function ProductCategoryCard({
             src={src}
             alt={product.productName}
             fill
+            quality={IMAGE_QUALITY.listing}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"
             className="object-contain p-3"
           />

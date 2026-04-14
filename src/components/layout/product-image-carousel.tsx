@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { IMAGE_QUALITY } from "@/lib/next-image-quality";
 import {
   createContext,
   useCallback,
@@ -155,6 +156,7 @@ export function ProductImageGalleryMain({
         src={current.src}
         alt={`${productName} — imagem ${index + 1} de ${count}`}
         fill
+        quality={IMAGE_QUALITY.max}
         className={current.fit === "wide" ? "object-cover object-center scale-110" : "object-contain"}
         sizes={
           fitHeight
@@ -218,6 +220,7 @@ export function ProductImageGalleryThumbs({ className }: { className?: string })
               src={src}
               alt=""
               fill
+              quality={IMAGE_QUALITY.productThumb}
               className="object-contain p-0.5"
               sizes="72px"
             />
