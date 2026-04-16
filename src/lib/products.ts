@@ -251,7 +251,6 @@ const CARINA_5BC_TC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "Carina Top Control  - 5Q preto  1.png" },
   { fileName: "Carina Top Control  - 5Q preto  2.png" },
   { fileName: "Carina Top Control  - 5Q preto  3.png" },
-  { fileName: "carina topcontrol 5bc capa.png", fit: "wide" },
 ];
 
 const carina5BcTcGallery = braslarCarinaColorGallery(
@@ -279,7 +278,6 @@ const CARINA_4BC_TC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "Carina Top Control  - 4Q preto 1.png" },
   { fileName: "Carina Top Control  - 4Q preto 2.png" },
   { fileName: "Carina Top Control  - 4Q preto 3.png" },
-  { fileName: "carina topcontrol 4bc capa.png", fit: "wide" },
 ];
 
 const carina4BcTcGallery = braslarCarinaColorGallery(
@@ -301,7 +299,6 @@ const CARINA_FRONT_4BC_TITANIO_FILES: readonly GalleryImageFile[] = [
   { fileName: "Carina Front  - 4Q Titanium 2.png" },
   { fileName: "Carina Front  - 4Q Titanium 3.png" },
   { fileName: "Carina 4bc chama.png", fit: "wide" },
-  { fileName: "Carina 4bc capa ajustada.jpg", fit: "wide" },
 ];
 
 const CARINA_FRONT_4BC_PRETO_FILES: readonly GalleryImageFile[] = [
@@ -330,7 +327,6 @@ const CARINA_FRONT_5Q_TITANIO_FILES: readonly GalleryImageFile[] = [
   { fileName: "Carina Front  - 5Q titanium 2.png" },
   { fileName: "Carina Front  - 5Q titanium 3.png" },
   { fileName: "Carina 5Bc 1.png" },
-  { fileName: "Carina 5Bc Capa 2.png", fit: "wide" },
 ];
 
 const CARINA_FRONT_5Q_PRETO_FILES: readonly GalleryImageFile[] = [
@@ -358,14 +354,13 @@ const NEW_SIRIUS_4BC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "New Sirius 4BC Preto 1.png" },
   { fileName: "New Sirius 4BC Preto 2.png" },
   { fileName: "New Sirius 4BC Preto 3.png" },
-  { fileName: "New Sirius 4BC capa.png", fit: "wide" },
-  { fileName: "New Sirius 4BC - zoom 2.png", fit: "wide" },
 ];
 
 const NEW_SIRIUS_4BC_BRANCO_FILES: readonly GalleryImageFile[] = [
   { fileName: "New Sirius 4BC Branco 1.png" },
   { fileName: "New Sirius 4BC Branco 2.png" },
   { fileName: "New Sirius 4BC Branco 3.png" },
+  { fileName: "New Sirius 4BC - zoom 2.png", fit: "wide" },
   { fileName: "New Sirius 4BC - zoom 2.jpg", fit: "wide" },
 ];
 
@@ -389,7 +384,6 @@ const NEW_SIRIUS_5BC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "New Sirius 5BC Preto 1.png" },
   { fileName: "New Sirius 5BC Preto 2.png" },
   { fileName: "New Sirius 5BC Preto 3.png" },
-  { fileName: "new sirius 5BC capa.jpg", fit: "wide" },
 ];
 
 const NEW_SIRIUS_5BC_BRANCO_FILES: readonly GalleryImageFile[] = [
@@ -421,7 +415,6 @@ const NEW_SIRIUS_PLUS_5BC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "New Sirius Plus 5BC Preto 1.png" },
   { fileName: "New Sirius Plus 5BC Preto 2.png" },
   { fileName: "New Sirius Plus 5BC Preto 3.png" },
-  { fileName: "New sirius plus 5BC capa.jpg", fit: "wide" },
 ];
 
 const NEW_SIRIUS_PLUS_5BC_BRANCO_FILES: readonly GalleryImageFile[] = [
@@ -453,7 +446,6 @@ const NEW_SIRIUS_PLUS_4BC_PRETO_FILES: readonly GalleryImageFile[] = [
   { fileName: "New Sirius Plus 4BC Preto 1.png" },
   { fileName: "New Sirius Plus 4BC Preto 2.png" },
   { fileName: "New Sirius Plus 4BC Preto 3.png" },
-  { fileName: "New Sirius Plus 4bc capa 1.jpg", fit: "wide" },
 ];
 
 const NEW_SIRIUS_PLUS_4BC_BRANCO_FILES: readonly GalleryImageFile[] = [
@@ -486,7 +478,6 @@ const ASIATICO_BRANCO_INOX_FILES: readonly GalleryImageFile[] = [
   { fileName: "Asiatico Mesa Inox Branco 1.png" },
   { fileName: "Asiatico Mesa Inox Branco 2.png" },
   { fileName: "Asiatico Mesa Inox Branco 3.png" },
-  { fileName: "Asiatico Mesa Inox Branco 4.jpg" },
 ];
 
 const ASIATICO_PRETO_VIDRO_FILES: readonly GalleryImageFile[] = [
@@ -540,7 +531,6 @@ const COOKTOP_5BC_FILES: readonly GalleryImageFile[] = [
   { fileName: "Cooktop 5BC 1.png" },
   { fileName: "Cooktop 5BC 2.png" },
   { fileName: "Cooktop 5BC 3.png" },
-  { fileName: "cooktop 5BC 4.jpg", fit: "wide" },
 ];
 
 function braslarCooktopGallery(
@@ -556,6 +546,17 @@ function braslarCooktopGallery(
   const mainAndDetails = publicGalleryImages(parts, [], files);
   const finalShot = publicGalleryImage(parts, [], { fileName: "Final.png" });
   return [...mainAndDetails, finalShot];
+}
+
+function braslarCooktopBannerImagePath(model: BraslarCooktopModelFolder): string {
+  const parts =
+    model === "2BC"
+      ? BRASLAR_COOKTOP_2BC_PARTS
+      : model === "4BC"
+        ? BRASLAR_COOKTOP_4BC_PARTS
+        : BRASLAR_COOKTOP_5BC_PARTS;
+
+  return publicImagePath([...parts, "cooktop braslar capa.jpg"]);
 }
 
 const PRODUCTS: Product[] = [
@@ -613,6 +614,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     imagePaths: carina5BcTcGallery("titanio"),
+    bannerImagePaths: [
+      publicImagePath([...BRASLAR_CARINA_5BC_PARTS, "Preto", "carina topcontrol 5bc capa.png"]),
+    ],
     colorVariants: [
       { slug: "titanio", label: "Titânio", imagePaths: carina5BcTcGallery("titanio") },
       { slug: "preto", label: "Preto", imagePaths: carina5BcTcGallery("preto") },
@@ -684,6 +688,9 @@ const PRODUCTS: Product[] = [
       },
     ],
     imagePaths: carina4BcTcGallery("titanio"),
+    bannerImagePaths: [
+      publicImagePath([...BRASLAR_CARINA_4BC_PARTS, "Preto", "carina topcontrol 4bc capa.png"]),
+    ],
     colorVariants: [
       { slug: "titanio", label: "Titânio", imagePaths: carina4BcTcGallery("titanio") },
       { slug: "preto", label: "Preto", imagePaths: carina4BcTcGallery("preto") },
@@ -756,6 +763,13 @@ const PRODUCTS: Product[] = [
       },
     ],
     imagePaths: carinaFrontControl4BcGallery("titanio"),
+    bannerImagePaths: [
+      publicImagePath([
+        ...BRASLAR_CARINA_FRONT_4BC_PARTS,
+        "Titanio",
+        "Carina 4bc capa ajustada.jpg",
+      ]),
+    ],
     colorVariants: [
       {
         slug: "titanio",
@@ -833,6 +847,13 @@ const PRODUCTS: Product[] = [
       },
     ],
     imagePaths: carinaFrontControl5QGallery("titanio"),
+    bannerImagePaths: [
+      publicImagePath([
+        ...BRASLAR_CARINA_FRONT_5Q_PARTS,
+        "Titanio",
+        "Carina 5Bc Capa 2.png",
+      ]),
+    ],
     colorVariants: [
       {
         slug: "titanio",
@@ -891,6 +912,9 @@ const PRODUCTS: Product[] = [
       ...SPEC_NEW_SIRIURUS_COMUM,
     ],
     imagePaths: newSirius5BcGallery("preto"),
+    bannerImagePaths: [
+      publicImagePath([...BRASLAR_NEW_SIRIUS_5BC_PARTS, "Preto", "new sirius 5BC capa.jpg"]),
+    ],
     colorVariants: [
       { slug: "preto", label: "Preto", imagePaths: newSirius5BcGallery("preto") },
       { slug: "branco", label: "Branco", imagePaths: newSirius5BcGallery("branco") },
@@ -943,6 +967,9 @@ const PRODUCTS: Product[] = [
       ...SPEC_NEW_SIRIURUS_COMUM,
     ],
     imagePaths: newSirius4BcGallery("preto"),
+    bannerImagePaths: [
+      publicImagePath([...BRASLAR_NEW_SIRIUS_4BC_PARTS, "Preto", "New Sirius 4b capa.png"]),
+    ],
     colorVariants: [
       { slug: "preto", label: "Preto", imagePaths: newSirius4BcGallery("preto") },
       { slug: "branco", label: "Branco", imagePaths: newSirius4BcGallery("branco") },
@@ -997,6 +1024,13 @@ const PRODUCTS: Product[] = [
       ...SPEC_NEW_SIRIURUS_COMUM,
     ],
     imagePaths: newSiriusPlus4BcGallery("preto"),
+    bannerImagePaths: [
+      publicImagePath([
+        ...BRASLAR_NEW_SIRIUS_PLUS_4BC_PARTS,
+        "Preto",
+        "New Sirius Plus 4bc capa 1.jpg",
+      ]),
+    ],
     colorVariants: [
       { slug: "preto", label: "Preto", imagePaths: newSiriusPlus4BcGallery("preto") },
       { slug: "branco", label: "Branco", imagePaths: newSiriusPlus4BcGallery("branco") },
@@ -1053,6 +1087,13 @@ const PRODUCTS: Product[] = [
       ...SPEC_NEW_SIRIURUS_COMUM,
     ],
     imagePaths: newSiriusPlus5BcGallery("preto"),
+    bannerImagePaths: [
+      publicImagePath([
+        ...BRASLAR_NEW_SIRIUS_PLUS_5BC_PARTS,
+        "Preto",
+        "New sirius plus 5BC capa.jpg",
+      ]),
+    ],
     colorVariants: [
       { slug: "preto", label: "Preto", imagePaths: newSiriusPlus5BcGallery("preto") },
       { slug: "branco", label: "Branco", imagePaths: newSiriusPlus5BcGallery("branco") },
@@ -1115,6 +1156,13 @@ const PRODUCTS: Product[] = [
       },
     ],
     imagePaths: asiaticoGallery("Vidro Branco", ASIATICO_VIDRO_BRANCO_FILES),
+    bannerImagePaths: [
+      publicImagePath([
+        ...BRASLAR_ASIATICO_PARTS,
+        "Branco Inox",
+        "Asiatico Mesa Inox Branco 4 capa.jpg",
+      ]),
+    ],
     colorVariants: [
       {
         slug: "vidro-branco",
@@ -1183,6 +1231,7 @@ const PRODUCTS: Product[] = [
       ...SPEC_COOKTOP_COMUM,
     ],
     imagePaths: braslarCooktopGallery("2BC", COOKTOP_2BC_FILES),
+    bannerImagePaths: [braslarCooktopBannerImagePath("2BC")],
     measurements: {
       withoutPackaging: {
         width: "51,000 cm",
@@ -1224,6 +1273,7 @@ const PRODUCTS: Product[] = [
       ...SPEC_COOKTOP_COMUM,
     ],
     imagePaths: braslarCooktopGallery("4BC", COOKTOP_4BC_FILES),
+    bannerImagePaths: [braslarCooktopBannerImagePath("4BC")],
     measurements: {
       withoutPackaging: {
         width: "55,000 cm",
@@ -1265,6 +1315,7 @@ const PRODUCTS: Product[] = [
       ...SPEC_COOKTOP_COMUM,
     ],
     imagePaths: braslarCooktopGallery("5BC", COOKTOP_5BC_FILES),
+    bannerImagePaths: [braslarCooktopBannerImagePath("5BC")],
     measurements: {
       withoutPackaging: {
         width: "68,000 cm",
