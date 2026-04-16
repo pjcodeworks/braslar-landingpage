@@ -21,8 +21,8 @@ export type HeroCarouselVideoSlide = {
 export type HeroCarouselSlide = HeroCarouselImageSlide | HeroCarouselVideoSlide;
 
 /**
- * Mídia do carrossel (ficheiros em `public/hero/carousel/slide-NN-*.jpg`).
- * Variantes `*-mobile.jpg` (retrato) só em ecrã pequeno; `*-desktop.jpg` a partir do breakpoint md.
+ * Mídia do carrossel em `public/hero/carousel/`.
+ * Mantém a ordem de exibição do hero e combina variantes mobile/desktop quando existirem.
  */
 const HERO_CAROUSEL_MEDIA = [
   {
@@ -32,7 +32,7 @@ const HERO_CAROUSEL_MEDIA = [
   },
   {
     desktop: "/hero/carousel/slide-02-desktop.jpg",
-    mobile: "/hero/carousel/slide-02-mobile.jpg",
+    mobile: "/hero/carousel/Mobile 2 (2).jpg",
     alt: `Fogão ${SITE.name} Carina em destaque`,
     /** Herói mais alto que 16:9: desloca o recorte para favorecer o produto. */
     desktopImageClassName: "object-[center_50%_46%]",
@@ -47,6 +47,21 @@ const HERO_CAROUSEL_MEDIA = [
     desktop: "/hero/carousel/slide-04-desktop.jpg",
     mobile: "/hero/carousel/slide-04-mobile.jpg",
     alt: `Fogão ${SITE.name} em ambiente de cozinha`,
+  },
+  {
+    desktop: "/hero/carousel/Desktop 5.jpg",
+    mobile: "/hero/carousel/Mobile 5.jpg",
+    alt: `Pessoa em cozinha com produtos ${SITE.name} ao fundo`,
+  },
+  {
+    desktop: "/hero/carousel/Desktop 6.jpg",
+    mobile: "/hero/carousel/Mobile 6.jpg",
+    alt: `Pessoa preparando alimentos em cozinha com eletrodomésticos ${SITE.name}`,
+  },
+  {
+    desktop: "/hero/carousel/Desktop 7.jpg",
+    mobile: "/hero/carousel/Mobile 7.jpg",
+    alt: `Família cozinhando em casa com ${SITE.name}`,
   },
 ] as const;
 
