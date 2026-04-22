@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { SiteNavLink } from "@/components/layout/site-nav-link";
@@ -37,6 +44,7 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [panelEntered, setPanelEntered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const headerShellRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const closeFallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuId = useId();
@@ -45,6 +53,23 @@ export function SiteHeader() {
     // Portal do menu móvel precisa de `document.body`; evita mismatch de hidratação.
     // eslint-disable-next-line react-hooks/set-state-in-effect -- mount-only flag
     setMounted(true);
+  }, []);
+
+  useLayoutEffect(() => {
+    const el = headerShellRef.current;
+    const root = document.documentElement;
+    if (!el) return;
+
+    const sync = () => {
+      root.style.setProperty("--site-header-h", `${el.offsetHeight}px`);
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      root.style.removeProperty("--site-header-h");
+    };
   }, []);
 
   useEffect(() => {
@@ -200,7 +225,10 @@ export function SiteHeader() {
     ) : null;
 
   return (
-    <header className="sticky top-0 z-50 border-b-4 border-b-[#CC298D] bg-[#87A0AB] text-white">
+    <header
+      ref={headerShellRef}
+      className="sticky top-0 z-50 border-b-4 border-b-[#CC298D] bg-[#87A0AB] text-white"
+    >
       <div className="flex h-16 w-full items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2" onClick={closeMobile}>
           <span className="relative h-9 w-44">

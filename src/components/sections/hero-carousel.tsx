@@ -88,13 +88,17 @@ function HeroVideoSlide({
   return (
     <div
       ref={onContainerRef}
-      className="relative h-full w-full shrink-0 bg-black"
+      className="relative h-full w-full shrink-0 overflow-hidden bg-black"
       role="group"
       aria-label={slide.alt}
     >
       <video
         data-hero-video
-        className="absolute inset-0 h-full w-full object-cover"
+        className={cn(
+          "h-full w-full object-cover",
+          "max-md:absolute max-md:inset-0",
+          "md:absolute md:inset-y-0 md:left-1/2 md:right-auto md:h-full md:w-auto md:max-w-none md:-translate-x-1/2 md:object-contain",
+        )}
         src={src}
         muted
         playsInline
@@ -256,7 +260,8 @@ export function HeroCarousel({
           <div
             ref={viewportRef}
             className={cn(
-              "relative min-h-[240px] h-[calc(100svh-4rem)] max-h-[calc(100svh-4rem)] w-full cursor-grab touch-pan-y select-none active:cursor-grabbing",
+              "relative min-h-[240px] w-full cursor-grab touch-pan-y select-none active:cursor-grabbing",
+              "h-[calc(100svh-var(--site-header-h,_4rem))] max-h-[calc(100svh-var(--site-header-h,_4rem))]",
               "[&_img]:pointer-events-none [&_img]:[-webkit-user-drag:none]",
               "[&_video]:pointer-events-none",
             )}
@@ -358,9 +363,41 @@ export function HeroCarousel({
                     ref={(el) => {
                       slideRefs.current[i] = el;
                     }}
-                    className="relative h-full w-full shrink-0"
+                    className="relative h-full w-full shrink-0 overflow-hidden bg-zinc-900"
                   >
-                    {/* Duas camadas: arte mobile só em ecrã pequeno; arte desktop a partir do breakpoint md. */}
+                    {/* Fundo: mesma arte ampliada + blur para preencher faixas laterais / cantos */}
+                    <div
+                      className="pointer-events-none absolute inset-0 z-0 md:hidden"
+                      aria-hidden
+                    >
+                      <Image
+                        src={slide.mobile}
+                        alt=""
+                        fill
+                        quality={75}
+                        draggable={false}
+                        priority={false}
+                        sizes="100vw"
+                        className="origin-center scale-[1.22] object-cover object-center blur-3xl brightness-[0.88] saturate-[1.08]"
+                      />
+                    </div>
+                    <div
+                      className="pointer-events-none absolute inset-0 z-0 hidden md:block"
+                      aria-hidden
+                    >
+                      <Image
+                        src={slide.desktop}
+                        alt=""
+                        fill
+                        quality={75}
+                        draggable={false}
+                        priority={false}
+                        sizes="100vw"
+                        className="origin-center scale-[1.14] object-cover object-center blur-3xl brightness-[0.88] saturate-[1.08]"
+                      />
+                    </div>
+
+                    {/* Arte nítida: mobile / desktop */}
                     <Image
                       src={slide.mobile}
                       alt={slide.alt}
@@ -369,12 +406,13 @@ export function HeroCarousel({
                       draggable={false}
                       priority={i === 1}
                       sizes="(max-width: 767px) 100vw, 0px"
-                      className="object-cover object-top md:hidden"
+                      className="z-10 object-cover object-top md:hidden"
                     />
                     <Image
                       src={slide.desktop}
                       alt={slide.alt}
-                      fill
+                      width={2560}
+                      height={1440}
                       quality={
                         slide.kind === "image" &&
                         slide.desktopImageQuality != null
@@ -385,7 +423,8 @@ export function HeroCarousel({
                       priority={i === 1}
                       sizes="(max-width: 767px) 0px, 100vw"
                       className={cn(
-                        "hidden object-cover md:block",
+                        "pointer-events-none z-10 hidden md:block",
+                        "absolute left-1/2 top-0 h-full w-auto max-h-full max-w-none -translate-x-1/2",
                         slide.kind === "image" && slide.desktopImageClassName,
                       )}
                     />

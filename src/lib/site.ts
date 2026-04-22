@@ -12,7 +12,7 @@ function getSiteUrl(): string {
 
 const categoryNav = [
   { label: "Carina", href: "/carina" },
-  { label: "New Sirirus", href: "/new-sirirus" },
+  { label: "New Sirius", href: "/new-sirirus" },
   { label: "Asiático", href: "/asiatico" },
   { label: "Cooktop", href: "/cooktops" },
 ] as const;

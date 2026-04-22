@@ -81,7 +81,7 @@ const CATEGORY_SLUGS = new Set<CategorySlug>([
 
 const CATEGORY_TITLES: Record<CategorySlug, string> = {
   carina: "Fogões Carina",
-  "new-sirirus": "Fogões New Sirirus",
+  "new-sirirus": "Fogões New Sirius",
   asiatico: "Linha Asiático",
   cooktops: "Cooktops",
 };
@@ -90,7 +90,7 @@ const CATEGORY_DESCRIPTIONS: Record<CategorySlug, string> = {
   carina:
     "Fogões a gás Carina — linhas Top Control e Front Control, com forno Easy-clean e mesa em vidro temperado.",
   "new-sirirus":
-    "Fogões com mesa em inox, trempe dupla esmaltada e forno Easy-clean — linha New Sirirus e New Sirirus Plus.",
+    "Fogões com mesa em inox, trempe dupla esmaltada e forno Easy-clean — linha New Sirius e New Sirius Plus.",
   asiatico:
     "Fogão compacto estilo cooktop com mesa em vidro temperado, ideal para cozinhas com espaço reduzido.",
   cooktops:
@@ -879,11 +879,11 @@ const PRODUCTS: Product[] = [
   }),
   buildProduct({
     productSlug: "fogao-5bc-new-sirirus",
-    productName: "Fogão 5 Bocas New Sirirus",
+    productName: "Fogão 5 Bocas New Sirius",
     categorySlug: "new-sirirus",
-    categoryLabel: "New Sirirus",
+    categoryLabel: "New Sirius",
     lineSlug: "new-sirirus",
-    lineLabel: "New Sirirus",
+    lineLabel: "New Sirius",
     description: [
       "04 queimadores de 2000 W",
       "01 queimador central super rápido 3000 W",
@@ -936,11 +936,11 @@ const PRODUCTS: Product[] = [
   }),
   buildProduct({
     productSlug: "fogao-4bc-new-sirirus",
-    productName: "Fogão 4 Bocas New Sirirus",
+    productName: "Fogão 4 Bocas New Sirius",
     categorySlug: "new-sirirus",
-    categoryLabel: "New Sirirus",
+    categoryLabel: "New Sirius",
     lineSlug: "new-sirirus",
-    lineLabel: "New Sirirus",
+    lineLabel: "New Sirius",
     description: [
       "04 queimadores família de 2000 W",
       "Queimadores estampados e espalhadores esmaltados",
@@ -991,11 +991,11 @@ const PRODUCTS: Product[] = [
   }),
   buildProduct({
     productSlug: "fogao-4bc-new-sirirus-plus",
-    productName: "Fogão 4 Bocas New Sirirus Plus",
+    productName: "Fogão 4 Bocas New Sirius Plus",
     categorySlug: "new-sirirus",
-    categoryLabel: "New Sirirus",
+    categoryLabel: "New Sirius",
     lineSlug: "new-sirirus-plus",
-    lineLabel: "New Sirirus Plus",
+    lineLabel: "New Sirius Plus",
     description: [
       "04 queimadores família de 2000 W",
       "Queimadores estampados e espalhadores esmaltados",
@@ -1052,11 +1052,11 @@ const PRODUCTS: Product[] = [
   }),
   buildProduct({
     productSlug: "fogao-5bc-new-sirirus-plus",
-    productName: "Fogão 5 Bocas New Sirirus Plus",
+    productName: "Fogão 5 Bocas New Sirius Plus",
     categorySlug: "new-sirirus",
-    categoryLabel: "New Sirirus",
+    categoryLabel: "New Sirius",
     lineSlug: "new-sirirus-plus",
-    lineLabel: "New Sirirus Plus",
+    lineLabel: "New Sirius Plus",
     description: [
       "04 queimadores família de 2000 W",
       "01 queimador central super rápido 3000 W",

@@ -5,7 +5,7 @@ export type HeroCarouselImageSlide = {
   alt: string;
   desktop: string;
   mobile: string;
-  /** Classes Tailwind extra só na `<Image>` desktop (ex.: `object-position`). */
+  /** Classes Tailwind extra só na `<Image>` desktop (ex.: `translate-y` fino). */
   desktopImageClassName?: string;
   /** Qualidade do `next/image` na variante desktop (1–100). */
   desktopImageQuality?: number;
@@ -34,8 +34,8 @@ const HERO_CAROUSEL_MEDIA = [
     desktop: "/hero/carousel/slide-02-desktop.jpg",
     mobile: "/hero/carousel/Mobile 2 (2).jpg",
     alt: `Fogão ${SITE.name} Carina em destaque`,
-    /** Herói mais alto que 16:9: desloca o recorte para favorecer o produto. */
-    desktopImageClassName: "object-[center_50%_46%]",
+    /** Arte mais alta que 16:9: leve deslocamento vertical no encaixe por altura. */
+    desktopImageClassName: "-translate-y-[1.5%]",
     desktopImageQuality: 100,
   },
   {
@@ -95,7 +95,7 @@ const HERO_LINE_CARINA_TOP_CONTROL_DESKTOP =
 /** Cartão Asiático na secção “Linhas”, `public/hero/lines/asiatico.png`. */
 const HERO_LINE_ASIATICO_DESKTOP = "/hero/lines/asiatico.png";
 
-/** Cartão New Sirirus na secção “Linhas”, `public/hero/lines/new-sirirus.png`. */
+/** Cartão New Sirius na secção “Linhas”, `public/hero/lines/new-sirirus.png`. */
 const HERO_LINE_NEW_SIRIRUS_DESKTOP = "/hero/lines/new-sirirus.png";
 
 /** Cartão Cooktop na secção “Linhas”, `public/hero/lines/cooktops.png`. */

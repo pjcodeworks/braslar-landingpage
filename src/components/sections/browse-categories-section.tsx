@@ -23,7 +23,7 @@ export function BrowseCategoriesSection() {
       aria-labelledby="explore-linhas-heading"
       className={cn(
         "scroll-mt-16 border-t border-zinc-200 py-6 sm:py-8 lg:py-6",
-        "lg:flex lg:h-[calc(100svh-4rem)] lg:min-h-0 lg:shrink-0 lg:flex-col lg:overflow-hidden",
+        "lg:flex lg:h-[calc(100svh-var(--site-header-h,_4rem))] lg:min-h-0 lg:shrink-0 lg:flex-col lg:overflow-hidden",
       )}
     >
       <div

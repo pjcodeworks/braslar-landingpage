@@ -5,6 +5,12 @@
 :root {
   --background: #fafafa;
   --foreground: #18181b;
+  /**
+   * Altura do cabeçalho (fallback antes da hidratação).
+   * Sincronizado em runtime por `SiteHeader` (ResizeObserver em `document.documentElement`).
+   * Manter alinhado com `site-header.tsx` (h-16 + border).
+   */
+  --site-header-h: 4rem;
 }
 
 @theme inline {
